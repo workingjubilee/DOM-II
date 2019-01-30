@@ -17,12 +17,13 @@
 // will figure that out sometime
 
 // Sample:
-document.querySelector('.nav-container').addEventListener('click', () => {
+document.querySelector('.nav-container').addEventListener('dblclick', () => {
   alert('Stop poking me!');
-  // NOTE: does NOT stop the page from refreshing from nav-container's <a>.
+  // NOTE: does NOT stop the page from refreshing from nav-container's <a>
+  // even if the event is 'click' not 'dblclick'
 });
 
-document.querySelector('.nav').addEventListener'click', () =>{
+document.querySelector('.nav').addEventListener('click', () =>{
   event.preventDefault();
   alert(`Stay a while and listen!`)
   event.stopPropagation();
@@ -30,12 +31,59 @@ document.querySelector('.nav').addEventListener'click', () =>{
   // Also yes, multiple alerts CAN chain!
 });
 
-document.querySelector('.logo-heading').addEventListener('click', () => {
-  alert('FUN BUS!');
+logoTag = document.querySelector('.logo-heading')
+logoTag.addEventListener('mouseover', () => {
+  logoTag.style.animationPlayState = "running";
   // NOTE: does NOT stop the page from refreshing from nav-container's <a>.
   event.stopPropagation();
   // Successfully killed propagation!
 });
+
+document.querySelector('.intro').addEventListener('', () => {
+  alert('This is the intro!')
+})
+
+document.querySelector('.footer').addEventListener('', () => {
+  alert('This is the footer!')
+})
+
+document.querySelector('.content-destination').addEventListener('click', () => {
+  alert('Sure is some content here!')
+})
+
+document.querySelector('.main-navigation').addEventListener('scroll', () => {
+  console.log('Scrolled?');
+  // this doesn't work, hm.
+})
+
+document.querySelector('body').addEventListener('scroll', () => {
+  console.log('Scrolled?');
+  // this doesn't work, either?
+})
+
+document.querySelector('body').addEventListener('wheel', () => {
+  console.log('Wheeled?');
+  // Oh, THIS works.
+})
+
+document.querySelector('.main-navigation').addEventListener('wheel', () => {
+  console.log('Pow?');
+  // this doesn't work, hm.
+})
+
+document.querySelector('').addEventListener('focusout', () => {
+  console.log('Boo!');
+  // Doesn't work?
+})
+
+document.querySelector('body').addEventListener('keydown',()=> {
+  let keylogger = [];
+  keylogger.push(`${this.char}`);
+  console.log(keylogger);
+  // doesn't work yet? hmm. undefined array of the same length?
+  // oh I get it, it needs the counter function enclosure thing, will add later.
+})
+
 
 // document.querySelectorAll('.nav-link').addEventListener('click',() => {
 //   alert('Stop poking me!');

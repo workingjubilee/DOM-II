@@ -10,6 +10,20 @@
           border-radius: @radius;
 }
 
+.pulse {
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+}
+
 .button-creator(@width, @height, @bg-color, @font-color, @font-size) {
   .border-radius(15px);
   .center;
@@ -24,7 +38,7 @@
   @media @mobile {
     width: 100%;
   }
-  
+
   &:hover {
     background: @white;
     color: @button-bg;
