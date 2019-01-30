@@ -17,10 +17,14 @@
 // will figure that out sometime
 
 // Sample:
-document.querySelector('.nav-container').addEventListener('dblclick', () => {
+document.querySelector('.nav-container').addEventListener('click', () => {
   alert('Stop poking me!');
   // NOTE: does NOT stop the page from refreshing from nav-container's <a>
-  // even if the event is 'click' not 'dblclick'
+});
+
+
+document.addEventListener('dblclick', e => {
+  alert(`This is a ${e.target}!`);
 });
 
 document.querySelector('.nav').addEventListener('click', () =>{
@@ -28,37 +32,52 @@ document.querySelector('.nav').addEventListener('click', () =>{
   alert(`Stay a while and listen!`)
   event.stopPropagation();
   // Successfully killed propagation!
-  // Also yes, multiple alerts CAN chain!
+  // Also yes, multiple alerts CAN chain! So annoying!
 });
 
 logoTag = document.querySelector('.logo-heading')
 logoTag.addEventListener('mouseover', () => {
   logoTag.style.animationPlayState = "running";
-  // NOTE: does NOT stop the page from refreshing from nav-container's <a>.
   event.stopPropagation();
   // Successfully killed propagation!
 });
 
-document.querySelector('.intro').addEventListener('', () => {
-  alert('This is the intro!')
-})
+logoTag.addEventListener('mouseout', () => {
+  logoTag.style.animationPlayState = "paused";
+  event.stopPropagation();
+  // together, "mouseover" and "mouseout" can reimplement a CSS :hover.
+});
 
-document.querySelector('.footer').addEventListener('', () => {
-  alert('This is the footer!')
-})
+// document.querySelector('.intro').addEventListener('', () => {
+//   alert('This is the intro!')
+// })
+//
+// document.querySelector('.footer').addEventListener('', () => {
+//   alert('This is the footer!')
+// })
+//
+// document.querySelector('.content-destination').addEventListener('click', () => {
+//   alert('Sure is some content here!')
+// })
 
-document.querySelector('.content-destination').addEventListener('click', () => {
-  alert('Sure is some content here!')
-})
+// document.querySelector('.main-navigation').addEventListener('scroll', () => {
+//   console.log('Scrolled?');
+//   // this doesn't work, hm.
+// })
+//
+// document.querySelector('body').addEventListener('scroll', e => {
+//   console.log('Scrolled?');
+//   // this doesn't work, either?
+// })
 
-document.querySelector('.main-navigation').addEventListener('scroll', () => {
+// window.addEventListener('scroll', e => {
+//   console.log('Scrolled?');
+//   // apparently "scroll" requires attachment to the window?
+// })
+
+document.addEventListener('scroll', e => {
   console.log('Scrolled?');
-  // this doesn't work, hm.
-})
-
-document.querySelector('body').addEventListener('scroll', () => {
-  console.log('Scrolled?');
-  // this doesn't work, either?
+  // or document!
 })
 
 document.querySelector('body').addEventListener('wheel', () => {
@@ -66,29 +85,73 @@ document.querySelector('body').addEventListener('wheel', () => {
   // Oh, THIS works.
 })
 
-document.querySelector('.main-navigation').addEventListener('wheel', () => {
-  console.log('Pow?');
-  // this doesn't work, hm.
+window.addEventListener('resize', () => {
+  console.log('Resize!');
+  // Works if attached to window but not document!
 })
 
-document.querySelector('').addEventListener('focusout', () => {
-  console.log('Boo!');
-  // Doesn't work?
-})
+window.addEventListener("load", e=> {
+  alert("Time to annoy you with JS!");
+});
 
-document.querySelector('body').addEventListener('keydown',()=> {
-  let keylogger = [];
-  keylogger.push(`${this.char}`);
+// document.querySelector('.main-navigation').addEventListener('wheel', () => {
+//   console.log('Pow?');
+//   // this doesn't work, hm.
+//   // oh, it works when HOVERING over this, I think because it's a mouse input?
+// })
+
+btnTag = document.querySelectorAll('.btn')
+console.log(btnTag);
+// btnTag.forEach(i => { btnTag[i].addEventListener('blur', () => {
+//   console.log('Boo!');
+//   // Doesn't work?
+// }}));
+// will figure this out.
+
+// btnTag[0].addEventListener('fadeout', () => {
+//   console.log('Boo!');
+//   // Doesn't work? with either blur or fadeout.
+// });
+//
+// btnTag[1].addEventListener('fadeout', () => {
+//   console.log('Boo!');
+//   // Doesn't work? with either blur or fadeout.
+// })
+//
+// btnTag[2].addEventListener('fadeout', () => {
+//   console.log('Boo!');
+//   // Doesn't work? with either blur or fadeout.
+// })
+
+// btnTag[0...].addEventListener('focusout', () => {
+//   console.log('Boo!');
+//   // Doesn't work?
+// })
+
+let keylogger = [];
+window.addEventListener('keyup', e => {
+  keylogger.push(e.code);
   console.log(keylogger);
   // doesn't work yet? hmm. undefined array of the same length?
-  // oh I get it, it needs the counter function enclosure thing, will add later.
+  // oh I get it, it needs the counter function enclosure thing, will add later, dirty hack is...
+  // finally got the keycode logging working! NOW I AM A MAST3R HAX0R who can keylog a site's inputs... eh.
 })
+
+document.addEventListener('keydown', e => {
+  console.log(`bwoop!`);
+});
+
+// Interesting note: if keydown is an alert() it steals focus and prevents a keyup event from triggering in the document or window objects on my OS/browser combination.
+// Also, keyup results in less multipresses than keydown!
 
 
 // document.querySelectorAll('.nav-link').addEventListener('click',() => {
 //   alert('Stop poking me!');
 //   // NOTE: Interestingly, did NOT work!
 //   // Uncaught TypeError: document.querySelectorAll(...).addEventListener is not a function
+// imgTag = document.querySelectorAll('img');
+// console.log(imgTag);
+// imgTag[0]
 //   // Also applies to getElementsByClassName so PROBABLY does not work on the HTMLCollection?
 // });
 
