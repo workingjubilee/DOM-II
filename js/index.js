@@ -24,7 +24,7 @@ document.querySelector('.nav-container').addEventListener('click', () => {
 
 
 document.addEventListener('dblclick', e => {
-  alert(`This is a ${e.target}!`);
+  alert(`This is an ${e.target}!`);
 });
 
 document.querySelector('.nav').addEventListener('click', () =>{
@@ -36,6 +36,7 @@ document.querySelector('.nav').addEventListener('click', () =>{
 });
 
 logoTag = document.querySelector('.logo-heading')
+
 logoTag.addEventListener('mouseover', () => {
   logoTag.style.animationPlayState = "running";
   event.stopPropagation();
@@ -100,8 +101,8 @@ window.addEventListener("load", e=> {
 //   // oh, it works when HOVERING over this, I think because it's a mouse input?
 // })
 
-btnTag = document.querySelectorAll('.btn')
-console.log(btnTag);
+// btnTag = document.querySelectorAll('.btn')
+// console.log(btnTag);
 // btnTag.forEach(i => { btnTag[i].addEventListener('blur', () => {
 //   console.log('Boo!');
 //   // Doesn't work?
